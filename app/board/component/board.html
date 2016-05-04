@@ -1,0 +1,5 @@
+<div clsss="board-file" *ngFor="#files of Board.Files, #i = index">
+    <div class="board-square" *ngFor="#rank of Board.Ranks, #j = index" [style.background]="Board.Squares[7-i][j].IsWhite ? 'white' : 'gray'">
+        <span class="square-name">{{Board.Squares[7-i][j].SquareId}}</span>
+    </div>
+</div>
