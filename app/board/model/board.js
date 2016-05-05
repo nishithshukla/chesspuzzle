@@ -33,7 +33,12 @@ System.register([], function(exports_1, context_1) {
                     for (var i = 1; i <= 8; i++) {
                         squares[i - 1] = new Array(8);
                         for (var j = 1; j <= 8; j++) {
-                            squares[i - 1][j - 1] = { SquareId: ranks[j - 1] + files[i - 1], IsWhite: isWhite, Piece: null };
+                            squares[i - 1][j - 1] =
+                                {
+                                    SquareId: ranks[j - 1] + files[i - 1],
+                                    IsWhite: isWhite,
+                                    Piece: null
+                                };
                             isWhite = !isWhite;
                         }
                         isWhite = !isWhite;

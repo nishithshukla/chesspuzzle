@@ -1,0 +1,19 @@
+chess-board {
+  border: 1px #444 solid;
+  display: inline-block;
+  height: 800px;
+  width: 800px;  
+}
+
+.board-square {
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+}
+
+.square-name {
+  font-family: verdana;
+  font-size: 11px;
+  color: darkblue;
+  padding: 2px;
+}

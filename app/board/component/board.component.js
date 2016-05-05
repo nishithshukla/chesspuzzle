@@ -28,7 +28,8 @@ System.register(['@angular/core', '../model/board'], function(exports_1, context
                 BoardComponent = __decorate([
                     core_1.Component({
                         selector: 'chess-board',
-                        templateUrl: './app/board/component/board.html'
+                        templateUrl: './app/board/component/board.component.html',
+                        styleUrls: ['./app/board/component/board.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], BoardComponent);

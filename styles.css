@@ -16,23 +16,3 @@ body, input[text], button {
   color: #888; 
   font-family: Cambria, Georgia; 
 }
-
-chess-board {
-  border: 1px #444 solid;
-  display: inline-block;
-  height: 400px;
-  width: 400px;  
-}
-
-.board-square {
-  height: 50px;
-  width: 50px;
-  display: inline-block;
-}
-
-.square-name {
-  font-family: verdana;
-  font-size: 8px;
-  color: #369;
-  padding: 2px;
-}

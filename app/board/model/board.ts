@@ -21,7 +21,12 @@ export class BoardHelper {
             squares[i-1]= new Array<Square>(8);
             for(var j=1; j<=8; j++)
             {
-                squares[i-1][j-1] = {SquareId: ranks[j-1] + files[i-1], IsWhite: isWhite, Piece: null };
+                squares[i-1][j-1] = 
+                {
+                    SquareId: ranks[j-1] + files[i-1], 
+                    IsWhite: isWhite, 
+                    Piece: null 
+                };
                 isWhite = !isWhite;    
             }
             isWhite = !isWhite;    
