@@ -25,6 +25,9 @@ System.register(['@angular/core', '../model/board'], function(exports_1, context
                 function BoardComponent() {
                     this.Board = new board_1.Board();
                 }
+                BoardComponent.prototype.ngOnInit = function () {
+                    this.Board.LoadInitialPieces();
+                };
                 BoardComponent = __decorate([
                     core_1.Component({
                         selector: 'chess-board',

@@ -1,16 +1,27 @@
-System.register([], function(exports_1, context_1) {
+System.register(["./piece", "./position"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Board, Square, BoardHelper;
+    var piece_1, position_1;
+    var Board, Square, BoardBuilder;
     return {
-        setters:[],
+        setters:[
+            function (piece_1_1) {
+                piece_1 = piece_1_1;
+            },
+            function (position_1_1) {
+                position_1 = position_1_1;
+            }],
         execute: function() {
             Board = (function () {
                 function Board() {
                     this.Ranks = ["a", "b", "c", "d", "e", "f", "g", "h"];
                     this.Files = ["1", "2", "3", "4", "5", "6", "7", "8"];
-                    this.Squares = BoardHelper.InitSquares(this.Ranks, this.Files);
+                    this.Squares = BoardBuilder.BuildSquares(this.Ranks, this.Files);
                 }
+                Board.prototype.LoadInitialPieces = function () {
+                    this.Pieces = piece_1.PieceFactory.GetPiecesFromPiecesPosition(position_1.PositionProvider.NewGame);
+                    this.Squares = BoardBuilder.BuildPiecesOnBoard(this);
+                };
                 return Board;
             }());
             exports_1("Board", Board);
@@ -23,10 +34,10 @@ System.register([], function(exports_1, context_1) {
                 return Square;
             }());
             exports_1("Square", Square);
-            BoardHelper = (function () {
-                function BoardHelper() {
+            BoardBuilder = (function () {
+                function BoardBuilder() {
                 }
-                BoardHelper.InitSquares = function (ranks, files) {
+                BoardBuilder.BuildSquares = function (ranks, files) {
                     var squares;
                     squares = new Array(8);
                     var isWhite = false;
@@ -46,9 +57,20 @@ System.register([], function(exports_1, context_1) {
                     return squares;
                 };
                 ;
-                return BoardHelper;
+                BoardBuilder.BuildPiecesOnBoard = function (board) {
+                    var squares = this.BuildSquares(board.Ranks, board.Files);
+                    ;
+                    board.Pieces.forEach(function (piece) {
+                        var square = squares[board.Files.indexOf(piece.SquareFile)][board.Ranks.indexOf(piece.SquareRank)];
+                        if (square) {
+                            square.Piece = piece;
+                        }
+                    });
+                    return squares;
+                };
+                return BoardBuilder;
             }());
-            exports_1("BoardHelper", BoardHelper);
+            exports_1("BoardBuilder", BoardBuilder);
         }
     }
 });

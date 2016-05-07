@@ -1,8 +1,17 @@
+import {Piece, PieceFactory} from "./piece";
+import {PositionProvider} from "./position";
+
 export class Board {
     Ranks = ["a", "b", "c", "d", "e", "f", "g", "h"];
     Files = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
+    Squares: Square[][] = BoardBuilder.BuildSquares(this.Ranks, this.Files);
+    Pieces: Piece[];
     
-    Squares: Square[][] = BoardHelper.InitSquares(this.Ranks, this.Files);
+    LoadInitialPieces() {
+         this.Pieces = PieceFactory.GetPiecesFromPiecesPosition(PositionProvider.NewGame);
+         this.Squares = BoardBuilder.BuildPiecesOnBoard(this);
+    }
 }
 
 export class Square {
@@ -11,8 +20,8 @@ export class Square {
     Piece: any = null;
 }
 
-export class BoardHelper {
-    static InitSquares(ranks : string[], files: string []) {
+export class BoardBuilder {
+    static BuildSquares(ranks : string[], files: string []) {
         var squares: Square[][]; 
         squares = new Array<Square[]>(8);
         var isWhite = false;
@@ -32,5 +41,19 @@ export class BoardHelper {
             isWhite = !isWhite;    
         }
         return squares; 
-    };        
+    };  
+    
+    static BuildPiecesOnBoard(board : Board) : Square[][] {
+        var squares = this.BuildSquares(board.Ranks, board.Files);;
+        
+        board.Pieces.forEach(piece => {
+            var square =  squares[board.Files.indexOf(piece.SquareFile)][board.Ranks.indexOf(piece.SquareRank)];
+
+            if(square) { 
+                square.Piece = piece; 
+            }
+        });
+        
+        return squares;
+    }
 }

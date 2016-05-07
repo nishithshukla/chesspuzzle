@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Board} from '../model/board'
 
 @Component({
@@ -6,6 +6,10 @@ import {Board} from '../model/board'
   templateUrl: './app/board/component/board.component.html',
   styleUrls: ['./app/board/component/board.component.css']
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit {
     Board: Board = new Board();
+    
+    ngOnInit() {
+      this.Board.LoadInitialPieces();
+    }
 }
