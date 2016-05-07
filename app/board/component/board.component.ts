@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Board} from '../model/board'
+import {Board, BoardBuilder} from '../model/board'
 
 @Component({
   selector: 'chess-board',
@@ -7,9 +7,13 @@ import {Board} from '../model/board'
   styleUrls: ['./app/board/component/board.component.css']
 })
 export class BoardComponent implements OnInit {
-    Board: Board = new Board();
+    Board: Board;
     
     ngOnInit() {
-      this.Board.LoadInitialPieces();
+      this.Board = BoardBuilder.BuildBoard("NewGame");
+    }
+    
+    LoadPosition(positionName : string) {
+      this.Board = BoardBuilder.BuildBoard(positionName);
     }
 }

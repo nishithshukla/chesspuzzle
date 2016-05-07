@@ -111,7 +111,7 @@ export class PieceFactory {
         return piece;
     }
     
-    static GetPiecesFromPiecesPosition(piecesPosition : string) : Piece[] {
+    static GetPiecesForPosition(piecesPosition : string) : Piece[] {
         var pieces = new Array<Piece>();
 
         var isWhite = true;

@@ -23,10 +23,12 @@ System.register(['@angular/core', '../model/board'], function(exports_1, context
         execute: function() {
             BoardComponent = (function () {
                 function BoardComponent() {
-                    this.Board = new board_1.Board();
                 }
                 BoardComponent.prototype.ngOnInit = function () {
-                    this.Board.LoadInitialPieces();
+                    this.Board = board_1.BoardBuilder.BuildBoard("NewGame");
+                };
+                BoardComponent.prototype.LoadPosition = function (positionName) {
+                    this.Board = board_1.BoardBuilder.BuildBoard(positionName);
                 };
                 BoardComponent = __decorate([
                     core_1.Component({

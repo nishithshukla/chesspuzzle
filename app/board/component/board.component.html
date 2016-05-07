@@ -1,12 +1,13 @@
 <div class="game-list">
-    <a href="#">New Game</a>    
-    <a href="#">Puzzle #1</a> 
-    <a href="#">Puzzle #2</a> 
-    <a href="#">Puzzle #3</a>    
-    <a href="#">Puzzle #4</a>    
-    <a href="#">Puzzle #5</a>    
-    <a href="#">Puzzle #6</a>      
-    <a href="#">Puzzle #7</a>    
+    <a href="#" (click)="LoadPosition('NewGame')">New Game</a>    
+    <a href="#" (click)="LoadPosition('Puzzle1')">Puzzle #1</a> 
+    <a href="#" (click)="LoadPosition('Puzzle2')">Puzzle #2</a> 
+    <a href="#" (click)="LoadPosition('Puzzle3')">Puzzle #3</a>    
+    <a href="#" (click)="LoadPosition('Puzzle4')">Puzzle #4</a>    
+    <a href="#" (click)="LoadPosition('Puzzle5')">Puzzle #5</a>    
+    <a href="#" (click)="LoadPosition('Puzzle6')">Puzzle #6</a>      
+    <a href="#" (click)="LoadPosition('Puzzle7')">Puzzle #7</a>    
+    <a href="#" (click)="LoadPosition('Puzzle8')">Puzzle #8</a>    
 </div>
 
 <div *ngFor="let files of Board.Files, let i = index">

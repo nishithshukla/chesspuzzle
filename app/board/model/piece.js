@@ -131,7 +131,7 @@ System.register([], function(exports_1, context_1) {
                     }
                     return piece;
                 };
-                PieceFactory.GetPiecesFromPiecesPosition = function (piecesPosition) {
+                PieceFactory.GetPiecesForPosition = function (piecesPosition) {
                     var pieces = new Array();
                     var isWhite = true;
                     piecesPosition.split(",").forEach(function (element) {

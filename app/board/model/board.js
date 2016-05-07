@@ -16,12 +16,7 @@ System.register(["./piece", "./position"], function(exports_1, context_1) {
                 function Board() {
                     this.Ranks = ["a", "b", "c", "d", "e", "f", "g", "h"];
                     this.Files = ["1", "2", "3", "4", "5", "6", "7", "8"];
-                    this.Squares = BoardBuilder.BuildSquares(this.Ranks, this.Files);
                 }
-                Board.prototype.LoadInitialPieces = function () {
-                    this.Pieces = piece_1.PieceFactory.GetPiecesFromPiecesPosition(position_1.PositionProvider.NewGame);
-                    this.Squares = BoardBuilder.BuildPiecesOnBoard(this);
-                };
                 return Board;
             }());
             exports_1("Board", Board);
@@ -37,7 +32,14 @@ System.register(["./piece", "./position"], function(exports_1, context_1) {
             BoardBuilder = (function () {
                 function BoardBuilder() {
                 }
-                BoardBuilder.BuildSquares = function (ranks, files) {
+                BoardBuilder.BuildBoard = function (positionName) {
+                    var board = new Board();
+                    var position = position_1.PositionProvider.GetPosition(positionName);
+                    board.Pieces = piece_1.PieceFactory.GetPiecesForPosition(position);
+                    board.Squares = this.loadPiecesOnBoard(board);
+                    return board;
+                };
+                BoardBuilder.buildSquares = function (ranks, files) {
                     var squares;
                     squares = new Array(8);
                     var isWhite = false;
@@ -57,8 +59,8 @@ System.register(["./piece", "./position"], function(exports_1, context_1) {
                     return squares;
                 };
                 ;
-                BoardBuilder.BuildPiecesOnBoard = function (board) {
-                    var squares = this.BuildSquares(board.Ranks, board.Files);
+                BoardBuilder.loadPiecesOnBoard = function (board) {
+                    var squares = this.buildSquares(board.Ranks, board.Files);
                     ;
                     board.Pieces.forEach(function (piece) {
                         var square = squares[board.Files.indexOf(piece.SquareFile)][board.Ranks.indexOf(piece.SquareRank)];
@@ -68,6 +70,7 @@ System.register(["./piece", "./position"], function(exports_1, context_1) {
                     });
                     return squares;
                 };
+                ;
                 return BoardBuilder;
             }());
             exports_1("BoardBuilder", BoardBuilder);
