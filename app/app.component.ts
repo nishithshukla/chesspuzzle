@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {BoardComponent} from './board/component/board.component'
+import {PieceMover} from './board/component/piecemover'
 
 @Component({
   selector: 'chess-app',

@@ -11,9 +11,9 @@
 </div>
 
 <div *ngFor="let files of Board.Files, let i = index">
-    <div class="board-square" *ngFor="let rank of Board.Ranks, let j = index"     
+    <div class="board-square droppable-square" *ngFor="let rank of Board.Ranks, let j = index"     
         [style.background]="Board.Squares[7-i][j].IsWhite ? '#FECE9E' : '#D18B46'">
         <span class="square-name">{{Board.Squares[7-i][j].SquareId}}</span>
-        <div *ngIf="Board.Squares[7-i][j].Piece" class="piece" style="background-image: url(./app/images/{{Board.Squares[7-i][j].Piece.Id}}{{Board.Squares[7-i][j].Piece.IsWhite? 'W' : 'B'}}.png)"></div>
+        <div *ngIf="Board.Squares[7-i][j].Piece" class="piece draggable-piece" style="background-image: url(./app/images/{{Board.Squares[7-i][j].Piece.Id}}{{Board.Squares[7-i][j].Piece.IsWhite? 'W' : 'B'}}.png)"></div>
     </div>
 </div>

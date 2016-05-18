@@ -35,3 +35,8 @@ chess-board {
 .game-list a {
   margin-right: 12px;
 }
+
+.over {
+  box-sizing: border-box;
+  border: 5px grey solid; 
+}

@@ -1,4 +1,4 @@
-System.register(['@angular/core', '../model/board'], function(exports_1, context_1) {
+System.register(['@angular/core', '../model/board', '../component/piecemover'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '../model/board'], function(exports_1, context
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, board_1;
+    var core_1, board_1, piecemover_1;
     var BoardComponent;
     return {
         setters:[
@@ -19,24 +19,31 @@ System.register(['@angular/core', '../model/board'], function(exports_1, context
             },
             function (board_1_1) {
                 board_1 = board_1_1;
+            },
+            function (piecemover_1_1) {
+                piecemover_1 = piecemover_1_1;
             }],
         execute: function() {
             BoardComponent = (function () {
-                function BoardComponent() {
+                function BoardComponent(_pieceMover) {
+                    this._pieceMover = _pieceMover;
                 }
                 BoardComponent.prototype.ngOnInit = function () {
                     this.Board = board_1.BoardBuilder.BuildBoard("NewGame");
+                    this._pieceMover.MakePiecesMovable(this.Board);
                 };
                 BoardComponent.prototype.LoadPosition = function (positionName) {
                     this.Board = board_1.BoardBuilder.BuildBoard(positionName);
+                    this._pieceMover.MakePiecesMovable(this.Board);
                 };
                 BoardComponent = __decorate([
                     core_1.Component({
                         selector: 'chess-board',
                         templateUrl: './app/board/component/board.component.html',
-                        styleUrls: ['./app/board/component/board.component.css']
+                        styleUrls: ['./app/board/component/board.component.css'],
+                        providers: [piecemover_1.PieceMover]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [piecemover_1.PieceMover])
                 ], BoardComponent);
                 return BoardComponent;
             }());
